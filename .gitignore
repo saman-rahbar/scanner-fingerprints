@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+venv/
+out/
+*.npz
+*.nii.gz
+*.pt
+figures/*.png
+figures/*.pdf
+.DS_Store
