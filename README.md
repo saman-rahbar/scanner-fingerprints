@@ -105,19 +105,21 @@ prefetch data and checkpoints on a login node first.
 ## Layout
 
 ```
-confound_audit.py        core probes, INLP, orthogonal projection
-combat_baseline.py       ComBat (empirical-Bayes) + INLP-vs-ComBat comparison
-build_cohort.py          ABIDE T1w -> frozen-encoder embeddings adapter
-extract_multilayer.py    per-layer GAP extraction for one encoder
-scanner_dominance.py     site-vs-clinical decodability matrix
-scanner_dominance_ci.py  + confidence intervals and nonlinear (MLP) probe
-intrinsic_equivalence.py paired / TOST test for random-vs-pretrained
-global_readout.py        LOSO clinical classification, raw/INLP/ComBat
-segdice_intervention.py  frozen encoder + trained decoder, mid-forward projection
-segdice_wherebites.py    few-site + all-scale + random-direction control
-make_silver_labels.py    SynthSeg silver labels
-make_figures.py          paper figures
-slurm/                   example job scripts
+src/
+  confound_audit.py        core probes, INLP, orthogonal projection
+  combat_baseline.py       ComBat (empirical-Bayes) + INLP-vs-ComBat comparison
+  build_cohort.py          ABIDE T1w -> frozen-encoder embeddings adapter
+  extract_multilayer.py    per-layer GAP extraction for one encoder
+  scanner_dominance.py     site-vs-clinical decodability matrix
+  scanner_dominance_ci.py  + confidence intervals and nonlinear (MLP) probe
+  intrinsic_equivalence.py paired / TOST test for random-vs-pretrained
+  global_readout.py        LOSO clinical classification, raw/INLP/ComBat
+  segdice_intervention.py  frozen encoder + trained decoder, mid-forward projection
+  segdice_wherebites.py    few-site + all-scale + random-direction control
+  make_silver_labels.py    SynthSeg silver labels
+  make_figures.py          paper figures
+slurm/                     example job scripts
+README.md  requirements.txt  LICENSE
 ```
 
 ## Configuration
