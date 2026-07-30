@@ -24,4 +24,4 @@ export EPOCHS=${EPOCHS:-20}
 export LR=${LR:-1e-4}
 export INLP_ITERS=${INLP_ITERS:-2,4,8}
 
-python -u segdice_intervention.py            # -> segdice_results.json
+python -u src/segdice_intervention.py            # -> segdice_results.json

@@ -18,4 +18,4 @@ export N_REP=${N_REP:-200}
 export DEEP_LAYERS=${DEEP_LAYERS:-3,4}
 export EPS=${EPS:-0.05}
 
-python -u intrinsic_equivalence.py               # -> intrinsic_equivalence_results.json
+python -u src/intrinsic_equivalence.py               # -> intrinsic_equivalence_results.json

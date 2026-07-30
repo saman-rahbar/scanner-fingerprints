@@ -17,4 +17,4 @@ export ABIDE_ROOT=${ABIDE_ROOT:-$HOME/data/abide}    # for the ASD-label join
 export GLOB=${GLOB:-$SCRATCH/multilayer_*.npz}
 export N_REP=${N_REP:-50}
 
-python -u scanner_dominance_ci.py                    # -> scanner_dominance_ci_results.json
+python -u src/scanner_dominance_ci.py                    # -> scanner_dominance_ci_results.json

@@ -26,4 +26,4 @@ export INLP_ITERS=${INLP_ITERS:-8}
 export SCALES=${SCALES:-0,1,2,3,4}            # all Swin scales; '4' = bottleneck-only
 export TRAIN_SITES=${TRAIN_SITES:-}           # empty -> 2 largest sites
 
-python -u segdice_wherebites.py               # -> segdice_wherebites_results.json
+python -u src/segdice_wherebites.py               # -> segdice_wherebites_results.json

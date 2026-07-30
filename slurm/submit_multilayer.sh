@@ -28,7 +28,7 @@ run_model () {
   echo "=== extracting $tag (ckpt=${ckpt:-RANDOM-INIT}) ==="
   if [ -z "$ckpt" ]; then unset FROZEN_CKPT; else export FROZEN_CKPT="$ckpt"; fi
   export MULTILAYER_NPZ="$OUTDIR/multilayer_${tag}.npz"
-  python -u extract_multilayer.py
+  python -u src/extract_multilayer.py
 }
 
 run_model brainseg "$HOME/models/brainseg_ukb.pt"    # brain-pretrained (UK Biobank 41k)
@@ -37,4 +37,4 @@ run_model random   ""                                # random-init baseline
 
 echo "=== scanner-dominance matrix ==="
 export GLOB="$OUTDIR/multilayer_*.npz"
-python -u scanner_dominance.py                        # -> scanner_dominance_results.json
+python -u src/scanner_dominance.py                        # -> scanner_dominance_results.json

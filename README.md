@@ -26,7 +26,7 @@ run those.
 ```bash
 for s in confound_audit combat_baseline scanner_dominance scanner_dominance_ci \
          global_readout intrinsic_equivalence segdice_intervention segdice_wherebites; do
-  python $s.py --sandbox
+  python src/$s.py --sandbox
 done
 ```
 
@@ -55,26 +55,26 @@ Three SwinUNETR-family encoders are audited via `FROZEN_CKPT` (unset = random in
 
 ```bash
 ABIDE_ROOT=/path/to/abide FROZEN_CKPT=/path/to/brain_ssl.pt \
-  MULTILAYER_NPZ=out/multilayer_brainseg.npz python extract_multilayer.py
+  MULTILAYER_NPZ=out/multilayer_brainseg.npz python src/extract_multilayer.py
 # repeat with the CT checkpoint and with FROZEN_CKPT unset (random)
 ```
 
 **2. Decodability matrix with confidence intervals** (site vs. clinical, linear + MLP):
 
 ```bash
-GLOB="out/multilayer_*.npz" ABIDE_ROOT=/path/to/abide python scanner_dominance_ci.py
+GLOB="out/multilayer_*.npz" ABIDE_ROOT=/path/to/abide python src/scanner_dominance_ci.py
 ```
 
 **3. Intrinsic test** — paired non-inferiority + TOST equivalence (random vs. pretrained):
 
 ```bash
-GLOB="out/multilayer_*.npz" python intrinsic_equivalence.py
+GLOB="out/multilayer_*.npz" python src/intrinsic_equivalence.py
 ```
 
 **4. Global readout** — leave-one-site-out clinical classification, raw vs. INLP vs. ComBat:
 
 ```bash
-COHORT_NPZ=out/cohort.npz ABIDE_ROOT=/path/to/abide python global_readout.py
+COHORT_NPZ=out/cohort.npz ABIDE_ROOT=/path/to/abide python src/global_readout.py
 ```
 
 **5. Segmentation intervention** — frozen encoder + trained decoder, mid-forward
@@ -82,18 +82,18 @@ projection; and the few-site / all-scale / matched-rank random-direction control
 
 ```bash
 # silver labels first (needs FreeSurfer)
-ABIDE_ROOT=/path/to/abide SILVER_ROOT=out/silver python make_silver_labels.py
+ABIDE_ROOT=/path/to/abide SILVER_ROOT=out/silver python src/make_silver_labels.py
 # leave-one-site-out cross-site Dice, before vs. after removal
 ABIDE_ROOT=/path/to/abide SILVER_ROOT=out/silver FROZEN_CKPT=/path/to/brain_ssl.pt \
-  python segdice_intervention.py
+  python src/segdice_intervention.py
 # few-site regime + all-scale + random-direction control
-... python segdice_wherebites.py
+... python src/segdice_wherebites.py
 ```
 
 **6. Figures:**
 
 ```bash
-python make_figures.py    # writes figures/*.pdf and *.png
+python src/make_figures.py    # writes figures/*.pdf and *.png
 ```
 
 ## Cluster jobs

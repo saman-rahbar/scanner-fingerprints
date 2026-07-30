@@ -25,4 +25,4 @@ export SILVER_ROOT=${SILVER_ROOT:-$SCRATCH/abide_silver}
 export SUBJ_PER_SITE=${SUBJ_PER_SITE:-60}       # match segdice cap so labels cover it
 export SYNTHSEG_FLAGS=${SYNTHSEG_FLAGS:---cpu --threads ${SLURM_CPUS_PER_TASK:-8}}
 
-python -u make_silver_labels.py
+python -u src/make_silver_labels.py

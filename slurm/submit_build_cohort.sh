@@ -18,6 +18,6 @@ export ABIDE_ROOT=${ABIDE_ROOT:-$HOME/data/abide}
 export FROZEN_CKPT=${FROZEN_CKPT:-}          # optional MONAI SSL weights; empty -> init encoder
 export COHORT_NPZ=${COHORT_NPZ:-$SCRATCH/cohort_cache.npz}
 
-python build_cohort.py                        # -> $COHORT_NPZ
+python src/build_cohort.py                        # -> $COHORT_NPZ
 echo "== audit =="
-python confound_audit.py                      # reads $COHORT_NPZ -> audit_results.json
+python src/confound_audit.py                      # reads $COHORT_NPZ -> audit_results.json
