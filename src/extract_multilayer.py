@@ -50,7 +50,18 @@ def main():
         print(f"[warn] no phenotype ({str(ex)[:60]}); site-only (age/sex = NaN)")
         pheno = {}
     tfm = B.make_transform()
-    net, dev = B.load_frozen_encoder()            # honors FROZEN_CKPT (unset=random)
+    arch = os.environ.get("ARCH", "swin")
+    if arch == "swin":
+        net, dev = B.load_frozen_encoder()        # honors FROZEN_CKPT (unset=random)
+        def get_layers(vol):
+            return embed_all(net, dev, vol)
+    else:                                          # random-init ViT / ResNet control
+        import torch, arch_encoders as A
+        dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        net = A.build_encoder(arch, B.IMG).to(dev).eval()
+        print(f"[model] random-init {arch} encoder ({arch} architecture)")
+        def get_layers(vol):
+            return A.encode_layers(net, arch, vol.unsqueeze(0).to(dev).float())
 
     subs = sorted(B.iter_t1(root), key=lambda x: x[1])   # deterministic order
     cap = int(os.environ.get("SUBJ_PER_SITE", "0"))      # 0 = all; else cap per site
@@ -69,7 +80,7 @@ def main():
             age = a if np.isfinite(a) else np.nan
             sex = (s - 1) if s in (1, 2) else np.nan
         try:
-            embs = embed_all(net, dev, tfm(t1))
+            embs = get_layers(tfm(t1))
         except Exception as ex:
             print(f"  [skip] sub-{sid}: {str(ex)[:70]}"); continue
         if not all(np.isfinite(e).all() for e in embs):
