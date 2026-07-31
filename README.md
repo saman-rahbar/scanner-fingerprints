@@ -1,4 +1,4 @@
-# Frozen Brain-MRI Foundation Models Are Scanner Fingerprints — code
+# Frozen Brain-MRI Foundation Models Are Site Fingerprints — code
 
 Reproduction code for the paper. The toolkit audits what frozen brain-MRI
 foundation-model embeddings encode (acquisition site vs. clinical signal), across
