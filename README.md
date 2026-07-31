@@ -47,7 +47,8 @@ Three SwinUNETR-family encoders are audited via `FROZEN_CKPT` (unset = random in
 
 - **brain-pretrained** — a publicly released brain-MRI SSL SwinUNETR checkpoint
 - **CT-pretrained** — the MONAI self-supervised SwinUNETR checkpoint
-- **random-init** — the same architecture, fixed seed, no checkpoint
+- **random-init** — the same architecture, no checkpoint; reported over three fixed
+  seeds (0/1/2), with site decodability stable across them (`multiseed_intrinsic.py`)
 
 ## Reproduce the results
 
@@ -120,6 +121,7 @@ src/
   scanner_dominance_ci.py  + confidence intervals and nonlinear (MLP) probe
   intrinsic_equivalence.py paired / TOST test for random-vs-pretrained
   arch_encoders.py         random-init ViT / ResNet encoders (cross-architecture control)
+  multiseed_intrinsic.py   seed-stability of the intrinsic fingerprint (3 seeds x 3 archs)
   global_readout.py        LOSO clinical classification, raw/INLP/ComBat
   segdice_intervention.py  frozen encoder + trained decoder, mid-forward projection
   segdice_wherebites.py    few-site + all-scale + random-direction control
