@@ -71,6 +71,12 @@ GLOB="out/multilayer_*.npz" ABIDE_ROOT=/path/to/abide python src/scanner_dominan
 GLOB="out/multilayer_*.npz" python src/intrinsic_equivalence.py
 ```
 
+Cross-architecture control (is the fingerprint SwinUNETR-specific?): extract
+random-init ViT / ResNet with `ARCH=vit` or `ARCH=resnet`, then run the matrix:
+```bash
+ARCH=vit ABIDE_ROOT=/path/to/abide MULTILAYER_NPZ=out/multilayer_vit.npz python src/extract_multilayer.py
+```
+
 **4. Global readout** — leave-one-site-out clinical classification, raw vs. INLP vs. ComBat:
 
 ```bash
@@ -113,6 +119,7 @@ src/
   scanner_dominance.py     site-vs-clinical decodability matrix
   scanner_dominance_ci.py  + confidence intervals and nonlinear (MLP) probe
   intrinsic_equivalence.py paired / TOST test for random-vs-pretrained
+  arch_encoders.py         random-init ViT / ResNet encoders (cross-architecture control)
   global_readout.py        LOSO clinical classification, raw/INLP/ComBat
   segdice_intervention.py  frozen encoder + trained decoder, mid-forward projection
   segdice_wherebites.py    few-site + all-scale + random-direction control
