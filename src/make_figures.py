@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Paper figures for "Frozen Brain-MRI Foundation Models Are Scanner Fingerprints".
+"""Paper figures for "Frozen Brain-MRI Foundation Models Are Site Fingerprints".
 Numbers are the verified outputs of scanner_dominance_ci (ABIDE-I) and
 scanner_dominance N_SITES=6 (ABIDE-II). Colorblind-safe: Okabe-Ito categoricals +
 viridis (perceptually uniform) for the magnitude heatmap. Saves PNG + PDF."""
