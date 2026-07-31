@@ -2,8 +2,8 @@
 """segdice_intervention.py -- the segmentation-Dice headline for direction #5.
 
 The GAP audit (confound_audit.py) asks: are the frozen embeddings site-biased,
-and is that bias removable? This script asks the deployment question that matters:
-does removing the confound subspace MID-FORWARD improve *cross-site
+and is that bias removable? This script asks the deployment question that matters
+cares about: does removing the confound subspace MID-FORWARD improve *cross-site
 segmentation Dice* -- with no retraining of the frozen encoder?
 
 Design (faithful to the paper's thesis):
