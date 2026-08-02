@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Frozen Brain-MRI Foundation Models Are Site Fingerprints"
+authors:
+  - family-names: Rahbar
+    given-names: Saman
+    affiliation: "University of British Columbia"
+year: 2026
+doi: 10.5281/zenodo.21753739
+url: "https://doi.org/10.5281/zenodo.21753739"
+repository-code: "https://github.com/saman-rahbar/scanner-fingerprints"
+license: MIT
+type: software

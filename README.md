@@ -137,3 +137,21 @@ Scripts are configured by environment variables (`ABIDE_ROOT`, `PHENO_CSV`,
 `FROZEN_CKPT`, `MULTILAYER_NPZ`, `GLOB`, `N_REP`, `SUBJ_PER_SITE`, `EPOCHS`,
 `INLP_ITERS`, `IMG_SIZE`, `SPACING_MM`, ...); each script documents its own in the
 module docstring. Absent data or checkpoints raise loudly rather than fabricate.
+
+## Citation
+
+If you use this code, please cite:
+
+> Rahbar, S. (2026). *Frozen Brain-MRI Foundation Models Are Site Fingerprints*.
+> Zenodo. https://doi.org/10.5281/zenodo.21753739
+
+```bibtex
+@misc{rahbar2026frozen,
+  author       = {Rahbar, Saman},
+  title        = {Frozen Brain-MRI Foundation Models Are Site Fingerprints},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.21753739},
+  url          = {https://doi.org/10.5281/zenodo.21753739}
+}
+```
