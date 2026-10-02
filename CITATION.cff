@@ -1,13 +1,25 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-title: "Frozen Brain-MRI Foundation Models Are Site Fingerprints"
+message: "If you use this code, please cite the paper below."
+title: "Site Is Decodable Before Pretraining: code"
 authors:
   - family-names: Rahbar
     given-names: Saman
-    affiliation: "University of British Columbia"
+    affiliation: "Independent researcher"
 year: 2026
 doi: 10.5281/zenodo.21753739
 url: "https://doi.org/10.5281/zenodo.21753739"
 repository-code: "https://github.com/saman-rahbar/scanner-fingerprints"
 license: MIT
 type: software
+preferred-citation:
+  type: article
+  title: "Site Is Decodable Before Pretraining: Negative Controls for Probing Frozen Brain-MRI Foundation Models"
+  authors:
+    - family-names: Rahbar
+      given-names: Saman
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2608.10295"
+  url: "https://arxiv.org/abs/2608.10295"

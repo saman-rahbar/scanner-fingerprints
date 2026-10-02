@@ -96,8 +96,16 @@ def decodabilities(E, site, age, sex, dx):
     clin = [v for v in [row["sex"], row["age_r2"], row.get("asd", float("nan"))]
             if np.isfinite(v)]
     row["clinical_peak"] = float(max(clin)) if clin else float("nan")
-    row["scanner_dominance"] = (float(row["site"] / (row["clinical_peak"] + 1e-3))
-                                if clin else float("nan"))
+    # A ratio against a denominator that is itself at chance is not a ratio.
+    # The +1e-3 epsilon turned clinical_peak = 0.000 into dominance values in
+    # the hundreds, which read as enormous effects and are division by nothing.
+    # A permutation null on this probe sits around 0.01-0.02, so below that the
+    # clinical target is indistinguishable from chance and the ratio is reported
+    # as undefined rather than as a number.
+    FLOOR = 0.02
+    row["scanner_dominance"] = (
+        float(row["site"] / row["clinical_peak"])
+        if clin and row["clinical_peak"] >= FLOOR else float("nan"))
     return row
 
 

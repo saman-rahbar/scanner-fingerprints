@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Paper figures for "Frozen Brain-MRI Foundation Models Are Site Fingerprints".
+"""Paper figures for "Site Is Decodable Before Pretraining: Negative Controls for Probing Frozen Brain-MRI Foundation Models".
 Numbers are the verified outputs of scanner_dominance_ci (ABIDE-I) and
 scanner_dominance N_SITES=6 (ABIDE-II). Colorblind-safe: Okabe-Ito categoricals +
 viridis (perceptually uniform) for the magnitude heatmap. Saves PNG + PDF."""
@@ -17,7 +17,7 @@ OK = {"blue": "#0072B2", "orange": "#E69F00", "green": "#009E73"}
 LAYERS = ["L0", "L1", "L2", "L3", "L4"]
 DIMS = [48, 96, 192, 384, 768]
 MODELS = ["brainseg", "ctssl", "random"]
-MLAB = {"brainseg": "Brain-pretrained", "ctssl": "CT-pretrained", "random": "Random-init"}
+MLAB = {"brainseg": "Brain-pretrained", "ctssl": "CT-pretrained", "random": "Untrained"}
 
 # ---- ABIDE-I (repeated-holdout means; site with 90% CIs) --------------------
 A1 = {
@@ -40,7 +40,7 @@ A2 = {
     "random":   dict(site=[.66, .88, .90, .88, .88], lo=[.54, .80, .84, .80, .82],
                      hi=[.76, .96, .96, .93, .93], clin=[.25, .50, .49, .49, .44]),
 }
-OUT = "figures"
+OUT = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "figures")
 import os
 os.makedirs(OUT, exist_ok=True)
 
@@ -58,9 +58,9 @@ def fig_heatmap():
     fig, axes = plt.subplots(2, 2, figsize=(9.2, 6.0),
                              gridspec_kw={"wspace": 0.12, "hspace": 0.35})
     panels = [("ABIDE-I", A1, "site", "Acquisition site"),
-              ("ABIDE-I", A1, "clin", "Best clinical (sex/age/ASD)"),
+              ("ABIDE-I", A1, "clin", "Highest clinical (sex/age/ASD)"),
               ("ABIDE-II", A2, "site", "Acquisition site"),
-              ("ABIDE-II", A2, "clin", "Best clinical (sex/age/ASD)")]
+              ("ABIDE-II", A2, "clin", "Highest clinical (sex/age/ASD)")]
     im = None
     for idx, (ax, (cohort, D, key, sub)) in enumerate(zip(axes.ravel(), panels)):
         M = np.array([D[m][key] for m in MODELS])          # models x layers
@@ -92,7 +92,7 @@ def fig_depth():
         site = np.array([[D[m]["site"][j] for m in MODELS] for j in range(5)])
         clin = np.array([[D[m]["clin"][j] for m in MODELS] for j in range(5)])
         for arr, col, lab in [(site, OK["blue"], "Acquisition site"),
-                              (clin, OK["orange"], "Best clinical")]:
+                              (clin, OK["orange"], "Highest clinical")]:
             mu = arr.mean(1); lo = arr.min(1); hi = arr.max(1)
             ax.fill_between(x, lo, hi, color=col, alpha=0.15, linewidth=0)
             ax.plot(x, mu, color=col, lw=2, marker="o", ms=5, label=lab)
